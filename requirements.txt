@@ -1,0 +1,13 @@
+flask>=3.0
+python-hcl2>=4.3.2
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.4
+requests>=2.31
+
+# Web framework (for API and web pages)
+# To read Terraform files
+# To work with data tables
+# Machine learning library
+# To make HTTP requests
+
