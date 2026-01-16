@@ -1,0 +1,3 @@
+filename,category,reason
+data/raw/safe/example_001.tf,SAFE,"Private bucket with encryption"
+data/raw/risky/example_001.tf,RISKY,"Public customer data with no encryption"
