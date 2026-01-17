@@ -1,3 +1,101 @@
-filename,category,reason
-data/raw/safe/example_001.tf,SAFE,"Private bucket with encryption"
-data/raw/risky/example_001.tf,RISKY,"Public customer data with no encryption"
+filename,category,reason,resource_type
+safe_001.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_002.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_003.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_004.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_005.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_006.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_007.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_008.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_009.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_010.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_011.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_012.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_013.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_014.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_015.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_016.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_017.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_018.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_019.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_020.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_021.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_022.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_023.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_024.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_025.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_026.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_027.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_028.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_029.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_030.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_031.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_032.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_033.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_034.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_035.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_036.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_037.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_038.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_039.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_040.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_041.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_042.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_043.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_044.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_045.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+safe_046.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_047.tf,safe,"Secure configuration with encryption and proper access controls",aws_db_instance
+safe_048.tf,safe,"Secure configuration with encryption and proper access controls",aws_security_group
+safe_049.tf,safe,"Secure configuration with encryption and proper access controls",aws_s3_bucket
+safe_050.tf,safe,"Secure configuration with encryption and proper access controls",aws_instance
+risky_001.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_002.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_003.tf,risky,"Insecure configuration with public access or missing security controls",aws_db_instance
+risky_004.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_005.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_006.tf,risky,"Insecure configuration with public access or missing security controls",aws_instance
+risky_007.tf,risky,"Insecure configuration with public access or missing security controls",aws_iam_role_policy
+risky_008.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_009.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_010.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_011.tf,risky,"Insecure configuration with public access or missing security controls",aws_db_instance
+risky_012.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_013.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_014.tf,risky,"Insecure configuration with public access or missing security controls",aws_instance
+risky_015.tf,risky,"Insecure configuration with public access or missing security controls",aws_iam_role_policy
+risky_016.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_017.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_018.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_019.tf,risky,"Insecure configuration with public access or missing security controls",aws_db_instance
+risky_020.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_021.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_022.tf,risky,"Insecure configuration with public access or missing security controls",aws_instance
+risky_023.tf,risky,"Insecure configuration with public access or missing security controls",aws_iam_role_policy
+risky_024.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_025.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_026.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_027.tf,risky,"Insecure configuration with public access or missing security controls",aws_db_instance
+risky_028.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_029.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_030.tf,risky,"Insecure configuration with public access or missing security controls",aws_instance
+risky_031.tf,risky,"Insecure configuration with public access or missing security controls",aws_iam_role_policy
+risky_032.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_033.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_034.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_035.tf,risky,"Insecure configuration with public access or missing security controls",aws_db_instance
+risky_036.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_037.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_038.tf,risky,"Insecure configuration with public access or missing security controls",aws_instance
+risky_039.tf,risky,"Insecure configuration with public access or missing security controls",aws_iam_role_policy
+risky_040.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_041.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_042.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_043.tf,risky,"Insecure configuration with public access or missing security controls",aws_db_instance
+risky_044.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_045.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_046.tf,risky,"Insecure configuration with public access or missing security controls",aws_instance
+risky_047.tf,risky,"Insecure configuration with public access or missing security controls",aws_iam_role_policy
+risky_048.tf,risky,"Insecure configuration with public access or missing security controls",aws_security_group
+risky_049.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
+risky_050.tf,risky,"Insecure configuration with public access or missing security controls",aws_s3_bucket
