@@ -1,6 +1,6 @@
 """
 Creates 100 sample Terraform files
-50 safe + 50 risky
+50 safe + 50 risky 
 """
 
 import os
