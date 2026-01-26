@@ -48,6 +48,61 @@ def extract_security_features(resource):
     tags = properties.get('tags', {})
     features['has_tags'] = 1 if tags else 0
     
+def extract_security_features(resource):
+    """
+    Extract 10 security features (upgraded from 6)
+    """
+    
+    properties = resource['properties']
+    features = {}
+    
+    # ORIGINAL 6 FEATURES
+    acl = properties.get('acl', 'private')
+    features['public_access'] = 1 if 'public' in acl else 0
+    
+    has_encryption = 'server_side_encryption_configuration' in properties
+    features['encryption_enabled'] = 1 if has_encryption else 0
+    
+    versioning = properties.get('versioning', {})
+    features['versioning_enabled'] = 1 if versioning.get('enabled') else 0
+    
+    logging = properties.get('logging', {})
+    features['logging_enabled'] = 1 if logging else 0
+    
+    bucket_name = properties.get('bucket', '')
+    sensitive_keywords = ['customer', 'user', 'personal', 'data', 'backup', 'prod']
+    features['sensitive_naming'] = 1 if any(kw in bucket_name.lower() for kw in sensitive_keywords) else 0
+    
+    tags = properties.get('tags', {})
+    features['has_tags'] = 1 if tags else 0
+    
+    # NEW FEATURE 7: MFA Delete
+    mfa_delete = versioning.get('mfa_delete', False)
+    features['mfa_delete_enabled'] = 1 if mfa_delete else 0
+    
+    # NEW FEATURE 8: Lifecycle Policy
+    lifecycle = properties.get('lifecycle_rule', [])
+    features['has_lifecycle_policy'] = 1 if lifecycle else 0
+    
+    # NEW FEATURE 9: Risky CORS
+    cors = properties.get('cors_rule', [])
+    if cors:
+        has_wildcard_cors = any(
+            '*' in rule.get('allowed_origins', []) 
+            for rule in (cors if isinstance(cors, list) else [cors])
+        )
+        features['risky_cors'] = 1 if has_wildcard_cors else 0
+    else:
+        features['risky_cors'] = 0
+    
+    # NEW FEATURE 10: Tag Quality
+    if tags:
+        required_tags = ['Environment', 'Owner', 'Purpose']
+        tag_quality = sum(1 for tag in required_tags if tag in tags)
+        features['tag_quality'] = tag_quality / len(required_tags)
+    else:
+        features['tag_quality'] = 0.0
+    
     return features
 
 # Test
