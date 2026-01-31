@@ -42,3 +42,4 @@ if __name__ == '__main__':
     config = LLMConfig()
     print("LLM Configuration:")
     print(config.get_config())
+    print(config.get_config())
