@@ -4,6 +4,7 @@ Production-ready Flask API
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from logger import logger
 import os
 import sys
 sys.path.append('src')
