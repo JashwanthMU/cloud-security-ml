@@ -4,6 +4,7 @@ Production-ready Flask API
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from logger import logger
 import os
 import sys
 sys.path.append('src')
@@ -29,47 +30,27 @@ def health():
 # Route 3: Main analysis endpoint
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
-    """
-    Analyze Terraform configuration
+    """Analyze Terraform configuration"""
     
-    Expects JSON:
-    {
-      "terraform_code": "resource aws_s3_bucket { ... }",
-      "author": "john@company.com",  # optional
-      "team": "engineering"           # optional
-    }
-    """
+    logger.info("Received analysis request")
     
     try:
         data = request.json
+        terraform_code = data.get('terraform_code', '')
         
-        if not data or 'terraform_code' not in data:
-            return jsonify({
-                "error": "Missing terraform_code in request"
-            }), 400
-        
-        terraform_code = data['terraform_code']
-        
-        # Optional metadata
-        author = data.get('author', 'unknown')
-        team = data.get('team', 'unknown')
+        logger.info(f"Code length: {len(terraform_code)} characters")
         
         # Perform analysis
         result = analyze_terraform(terraform_code=terraform_code)
         
-        # Add metadata
-        result['metadata'] = {
-            'author': author,
-            'team': team,
-            'api_version': '1.0.0'
-        }
+        logger.info(f"Analysis complete: {result['overall_decision']}")
         
         return jsonify(result)
     
     except Exception as e:
-        return jsonify({
-            "error": str(e)
-        }), 500
+        logger.error(f"Analysis failed: {str(e)}", exc_info=True)
+        return jsonify({"error": str(e)}), 500
+
 
 # Route 4: Upload file endpoint
 @app.route('/api/analyze-file', methods=['POST'])
