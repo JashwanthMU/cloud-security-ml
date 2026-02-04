@@ -8,12 +8,20 @@ import os
 import sys
 sys.path.append('src')
 
-from api.analyzer import analyze_terraform
+from api.hybrid_analyzer import HybridAnalyzer
+import logging
+
 
 app = Flask(__name__, 
             template_folder='../../frontend/templates',
             static_folder='../../frontend/static')
 CORS(app)  # Allow requests from web browser
+# Logging setup
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Create hybrid analyzer instance
+hybrid_analyzer = HybridAnalyzer()
 
 # Route 1: Homepage
 @app.route('/')
@@ -29,47 +37,34 @@ def health():
 # Route 3: Main analysis endpoint
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
-    """
-    Analyze Terraform configuration
-    
-    Expects JSON:
-    {
-      "terraform_code": "resource aws_s3_bucket { ... }",
-      "author": "john@company.com",  # optional
-      "team": "engineering"           # optional
-    }
-    """
-    
+    """Analyze Terraform configuration using hybrid ML + LLM system"""
+
+    logger.info("Received analysis request")
+
     try:
         data = request.json
-        
+
         if not data or 'terraform_code' not in data:
-            return jsonify({
-                "error": "Missing terraform_code in request"
-            }), 400
-        
-        terraform_code = data['terraform_code']
-        
-        # Optional metadata
-        author = data.get('author', 'unknown')
-        team = data.get('team', 'unknown')
-        
-        # Perform analysis
-        result = analyze_terraform(terraform_code=terraform_code)
-        
-        # Add metadata
-        result['metadata'] = {
-            'author': author,
-            'team': team,
-            'api_version': '1.0.0'
-        }
-        
+            return jsonify({"error": "Missing terraform_code in request"}), 400
+
+        terraform_code = data.get('terraform_code', '')
+
+        logger.info(f"Code length: {len(terraform_code)} characters")
+
+        # Use hybrid analyzer
+        result = hybrid_analyzer.analyze_complete(terraform_code)
+
+        logger.info(
+            f"Analysis complete: {result.get('decision')} "
+            f"(score: {result.get('risk_score')})"
+        )
+
         return jsonify(result)
-    
+
     except Exception as e:
-        return jsonify({
-            "error": str(e)
-        }), 500
+        logger.error(f"Analysis failed: {str(e)}", exc_info=True)
+        return jsonify({"error": str(e)}), 500
+
 
 # Route 4: Upload file endpoint
 @app.route('/api/analyze-file', methods=['POST'])
@@ -96,7 +91,8 @@ def analyze_file():
         file.save(temp_path)
         
         # Analyze
-        result = analyze_terraform(file_path=temp_path)
+        result = hybrid_analyzer.analyze_file(temp_path)
+
         
         # Clean up
         os.remove(temp_path)
@@ -123,7 +119,7 @@ def analyze_batch():
         
         results = []
         for i, config in enumerate(configurations):
-            result = analyze_terraform(terraform_code=config['code'])
+            result = hybrid_analyzer.analyze_complete(config['code'])
             result['config_id'] = config.get('id', f'config_{i}')
             results.append(result)
         
