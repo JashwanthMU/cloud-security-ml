@@ -86,7 +86,7 @@ def analyze_file():
         file.save(temp_path)
         
         # Analyze
-        result = analyze_terraform(file_path=temp_path)
+        result = hybrid_analyzer.analyze_file(temp_path)
         
         # Clean up
         os.remove(temp_path)
