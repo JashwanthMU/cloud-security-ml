@@ -12,10 +12,17 @@ sys.path.append('src')
 from api.hybrid_analyzer import HybridAnalyzer
 import logging
 
+
 app = Flask(__name__, 
             template_folder='../../frontend/templates',
             static_folder='../../frontend/static')
 CORS(app)  # Allow requests from web browser
+# Logging setup
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Create hybrid analyzer instance
+hybrid_analyzer = HybridAnalyzer()
 
 # Route 1: Homepage
 @app.route('/')
@@ -59,8 +66,6 @@ def analyze():
         logger.error(f"Analysis failed: {str(e)}", exc_info=True)
         return jsonify({"error": str(e)}), 500
 
-
-
 # Route 4: Upload file endpoint
 @app.route('/api/analyze-file', methods=['POST'])
 def analyze_file():
@@ -87,6 +92,7 @@ def analyze_file():
         
         # Analyze
         result = hybrid_analyzer.analyze_file(temp_path)
+
         
         # Clean up
         os.remove(temp_path)
