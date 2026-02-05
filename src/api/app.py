@@ -4,6 +4,7 @@ Production-ready Flask API
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from logger import logger
 import os
 import sys
 sys.path.append('src')
@@ -64,7 +65,6 @@ def analyze():
     except Exception as e:
         logger.error(f"Analysis failed: {str(e)}", exc_info=True)
         return jsonify({"error": str(e)}), 500
-
 
 # Route 4: Upload file endpoint
 @app.route('/api/analyze-file', methods=['POST'])
