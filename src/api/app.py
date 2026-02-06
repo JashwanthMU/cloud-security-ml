@@ -12,9 +12,13 @@ sys.path.append('src')
 from api.hybrid_analyzer import HybridAnalyzer
 import logging
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0a16561e50242007f6cdd72c489ef569313b125c
+=======
+
+>>>>>>> 198280a7dda133577688e5b0e0a93b80391fc3de
 
 app = Flask(__name__, 
             template_folder='../../frontend/templates',
@@ -70,10 +74,13 @@ def analyze():
         return jsonify({"error": str(e)}), 500
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 0a16561e50242007f6cdd72c489ef569313b125c
 
+=======
+>>>>>>> 198280a7dda133577688e5b0e0a93b80391fc3de
 # Route 4: Upload file endpoint
 @app.route('/api/analyze-file', methods=['POST'])
 def analyze_file():
@@ -101,9 +108,13 @@ def analyze_file():
         # Analyze
         result = hybrid_analyzer.analyze_file(temp_path)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0a16561e50242007f6cdd72c489ef569313b125c
+=======
+
+>>>>>>> 198280a7dda133577688e5b0e0a93b80391fc3de
         
         # Clean up
         os.remove(temp_path)
