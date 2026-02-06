@@ -4,13 +4,17 @@ Production-ready Flask API
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from logger import logger
 import os
 import sys
 sys.path.append('src')
 
 from api.hybrid_analyzer import HybridAnalyzer
 import logging
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a16561e50242007f6cdd72c489ef569313b125c
 
 app = Flask(__name__, 
             template_folder='../../frontend/templates',
@@ -65,6 +69,10 @@ def analyze():
         logger.error(f"Analysis failed: {str(e)}", exc_info=True)
         return jsonify({"error": str(e)}), 500
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a16561e50242007f6cdd72c489ef569313b125c
 
 # Route 4: Upload file endpoint
 @app.route('/api/analyze-file', methods=['POST'])
@@ -92,7 +100,10 @@ def analyze_file():
         
         # Analyze
         result = hybrid_analyzer.analyze_file(temp_path)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a16561e50242007f6cdd72c489ef569313b125c
         
         # Clean up
         os.remove(temp_path)
